@@ -1,4 +1,5 @@
 from django.db import models
+from django.utils.timezone import now
 
 
 class Subject(models.Model):
@@ -15,7 +16,7 @@ class Subject(models.Model):
 
 class Scheduling(models.Model):
     confirmation = models.BooleanField(default=False)
-    lesson_time = models.DateTimeField(auto_now_add=True)
+    lesson_time = models.DateTimeField(default=now())
     subject = models.ForeignKey(Subject, on_delete=models.CASCADE, blank=True, null=True, related_name='schedule')
     users = models.ManyToManyField('users.CustomUser', blank=True, null=True, related_name='schedule')
 
