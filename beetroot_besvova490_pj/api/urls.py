@@ -8,10 +8,9 @@ router.register('subjects', views.SubjectViewSet, basename='subjects')
 router.register('schedule', views.SchedulesViewSet, basename='schedule')
 
 urlpatterns = [
-    path('in/', include(router.urls)),
-    path('in/users/<int:pk>/follow-user/<int:target_id>/', views.UserViewSet.as_view({'get': 'follow_user'})),
-    path('in/users/<int:pk>/follow-subject/<int:subject_id>/', views.UserViewSet.as_view({'get': 'follow_subject'})),
+    path('api/', include(router.urls)),
+    path('api/telegram-sign-in', views.UserViewSet.as_view({'post': 'telegram_sign_in'})),
+    path('api/telegram-sign-up', views.UserViewSet.as_view({'post': 'telegram_sign_up'})),
     path('', views.home, name='api-home'),
     path('about', views.about, name='api-abouts'),
-    path('schedule', views.schedules, name='api-schedule'),
 ]
